@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/feedback">Feedback submission</a></li>
+        <li><a href="/list">Feedback list</a></li>
+        <li th:if="${isAdmin}"><a href="/analytics">Analytics</a></li>
+        <li th:unless="${isAdmin}"><a>Analytics (Only for Admins)</a></li>
+    </ul>
+</nav>
+<div th:if="${isAdmin}">
+    <h1>Welcome to Analytics, Admin!</h1>
+    <div>
+        <p>Average rating of the service: </p>
+        <p th:text="${averageRating}"/>
+    </div>
+    <div>
+        <p>Average convenience of the service: </p>
+        <p th:text="${averageConvenience}"/>
+    </div>
+    <div>
+        <p>Top 3 Most popular countries: </p>
+        <p th:text="'1. '+${top3countries.get(0)}"/>
+        <p th:text="'2. '+${top3countries.get(1)}"/>
+        <p th:text="'3. '+${top3countries.get(2)}"/>
+    </div>
+    <div>
+        <p>Best calculated age: </p>
+        <p th:text="${bestAge}"/>
+    </div>
+    <div>
+        <p>Satisfaction percentage: </p>
+        <p th:text="${satisfiedPercentage} + '%'"/>
+    </div>
+    <div>
+        <p>Most satisfied country: </p>
+        <p th:text="${mostSatisfiedCountry}"/>
+    </div>
+</div>
+<div th:unless="${isAdmin}">
+    <h1>Sorry, you are not an Admin!
+    Log in as an Admin to see Analytics</h1>
+</div>
+</body>
+</html>

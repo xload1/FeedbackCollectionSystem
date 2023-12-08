@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -102,6 +105,10 @@ public class MainController {
             feedbackMessage = "You are not logged in";
             return "redirect:/feedback";
         }
+        if(feedbackService.getUsersFeedbacks().stream().filter(userFeedback -> userFeedback.getUsername().equals(cookieSearch(request, "username"))).toList().size() > 0) {
+            feedbackMessage = "You have already left feedback";
+            return "redirect:/feedback";
+        }
         try {
             feedbackService.saveFeedback(new Feedback(text, rating, convenience, satisfied,
                     anonymous));
@@ -148,5 +155,18 @@ public class MainController {
         }
         model.addAttribute("isAdmin", isAdmin);
         return "list";
+    }
+    @GetMapping("/analytics")
+    public String analytics(Model model) {
+        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("averageRating", new DecimalFormat("#.#").format(analysisService.getAverageRating()) );
+        model.addAttribute("averageConvenience", new DecimalFormat("#.#").format(analysisService.getAverageConvenience()));
+        model.addAttribute("satisfiedPercentage", analysisService.getSatisfactionPercentage());
+        model.addAttribute("mostSatisfiedCountry", analysisService.getMostSatisfiedCountry());
+        model.addAttribute("bestAge", new DecimalFormat("##.#").format(analysisService.getBestAge()));
+        model.addAttribute("top3countries", analysisService.getCountriesMap().entrySet().stream()
+                .sorted(Collections.reverseOrder(Comparator.comparingInt(Map.Entry::getValue)))
+                .limit(3).collect(Collectors.toList()));
+        return "analytics";
     }
 }
