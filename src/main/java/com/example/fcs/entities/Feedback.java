@@ -21,4 +21,11 @@ public class Feedback {
     boolean satisfied;
     boolean anonymous;
 
+    public Feedback(String text, int rating, int convenience, boolean satisfied, boolean anonymous) {
+        this.text = text;
+        this.rating = rating;
+        this.convenience = convenience;
+        this.satisfied = satisfied;
+        this.anonymous = anonymous;
+    }
 }

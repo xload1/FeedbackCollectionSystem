@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Form</title>
+</head>
+<body>
+
+
+<nav>
+    <ul>
+        <li><a href="/feedback">Feedback submission</a></li>
+        <li><a href="/list">Feedback list</a></li>
+        <li th:if="${isAdmin}"><a href="/analytics">Analytics</a></li>
+        <li th:unless="${isAdmin}"><a>Analytics (Only for Admins)</a></li>
+    </ul>
+</nav>
+<h1 th:if="${isAdmin}">Admins cannot submit feedback=(</h1>
+<div th:unless="${isAdmin}">
+<div th:if="${isUser}">
+    <h1>You can now submit a feedback of the service</h1>
+    <form method="post" action="/feedback/submit">
+        <input type="text" name="text" placeholder="Your feedback text" pattern="^.{1,299}$" required>
+        <br/>
+        <input type="number" name="rating" placeholder="Your rating of the service" min="1" max="5" required>
+        <br/>
+        <input type="number" name="convenience" placeholder="Your rating of the service convenience" min="1" max="5" required>
+        <br/>
+        <label>Are you satisfied with the service?
+            <input type="checkbox" name="satisfied">
+        </label>
+        <br/>
+        <label>Anonymous feedback
+            <input type="checkbox" name="anonymous">
+        </label>
+        <br/>
+        <span>*Your feedback will not be shown for other users in feedback list, but admins will still see it for analytics</span>
+        <br/>
+        <button type="submit">Submit Feedback</button>
+    </form>
+</div>
+<div th:unless="${isUser}">
+    <h1>Enter your data to get started with submitting feedback</h1>
+    <form method="post" action="/get-started/submit">
+        <input type="text" name="username" placeholder="Username" pattern="^[a-zA-Z]{1,20}$" required>
+        <br/>
+        <input type="number" name="age" placeholder="Your age" min="12" max="120" required>
+        <br/>
+        <input type="text" name="country" placeholder="Your country of residence" pattern="^[a-zA-Z]{1,20}$" required>
+        <br/>
+        <button type="submit">Get Started</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

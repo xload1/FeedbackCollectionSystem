@@ -18,4 +18,10 @@ public class User {
     String username;
     int age;
     String country;
+
+    public User(String username, int age, String country) {
+        this.username = username;
+        this.age = age;
+        this.country = country;
+    }
 }
