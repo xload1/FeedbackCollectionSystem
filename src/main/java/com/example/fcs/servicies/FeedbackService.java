@@ -2,12 +2,11 @@ package com.example.fcs.servicies;
 
 import com.example.fcs.additional.UserFeedback;
 import com.example.fcs.entities.Feedback;
-import com.example.fcs.entities.User;
+import com.example.fcs.entities.Users;
 import com.example.fcs.repos.FeedbackRepository;
 import com.example.fcs.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +23,12 @@ public class FeedbackService {
     public void saveFeedback(Feedback feedback){
         feedbackRepository.save(feedback);
     }
-    public void saveUser(User user){
+    public void saveUser(Users user){
         userRepository.save(user);
     }
     public List<UserFeedback> getUsersFeedbacks(){
         List<Feedback> feedbacks = feedbackRepository.findAll();
-        List<User> users = userRepository.findAll();
+        List<Users> users = userRepository.findAll();
         List<UserFeedback> userFeedbacks = new ArrayList<>();
         for (int i = 0; i < feedbacks.size(); i++) {
             if (feedbacks.get(i)!=null&&users.get(i)!=null){

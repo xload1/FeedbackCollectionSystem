@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback List</title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/feedback">Feedback submission</a></li>
+        <li><a href="/list">Feedback list</a></li>
+        <li th:if="${isAdmin}"><a href="/analytics">Analytics</a></li>
+        <li th:unless="${isAdmin}"><a>Analytics (Only for Admins)</a></li>
+    </ul>
+</nav>
+<p>Sort by:</p>
+<table>
+    <thead>
+    <tr>
+        <th>
+            <form>
+                <input type="hidden" value="Username" name="sort">
+                <input type="submit" value="Username">
+            </form>
+        </th>
+        <th>
+            <form>
+                <input type="hidden" value="Age" name="sort">
+                <input type="submit" value="Age">
+            </form>
+        </th>
+        <th>
+            <form>
+                <input type="hidden" value="Country" name="sort">
+                <input type="submit" value="Country">
+            </form>
+        </th>
+        <th>
+            <form>
+                <input type="hidden" value="Feedback" name="sort">
+                <input type="submit" value="Feedback">
+            </form>
+        </th>
+        <th>
+            <form>
+                <input type="hidden" value="Rating" name="sort">
+                <input type="submit" value="Rating">
+            </form>
+        </th>
+        <th>
+            <form>
+                <input type="hidden" value="Convenience" name="sort">
+                <input type="submit" value="Convenience">
+            </form>
+        </th>
+        <th>
+            <form>
+                <input type="hidden" value="Satisfied" name="sort">
+                <input type="submit" value="Satisfied">
+            </form>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="feedback : ${feedbacks}" th:class="${feedback.isAnonymous() ? 'red' : ''}">
+        <td th:text="${feedback.username}"></td>
+        <td th:text="${feedback.age}"></td>
+        <td th:text="${feedback.country}"></td>
+        <td th:text="${feedback.feedback}"></td>
+        <td th:text="${feedback.rating}"></td>
+        <td th:text="${feedback.convenience}"></td>
+        <td th:text="${feedback.satisfied}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -37,6 +37,7 @@
         <span>*Your feedback will not be shown for other users in feedback list, but admins will still see it for analytics</span>
         <br/>
         <button type="submit">Submit Feedback</button>
+        <span th:text="${feedbackMessage}"/>
     </form>
 </div>
 <div th:unless="${isUser}">
