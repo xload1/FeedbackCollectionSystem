@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Get Started</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
 </head>
 <body>
-<h1>Welcome to Feedback Collection System!</h1>
-<div>
+<h1 class="getStartedMainHeading">Welcome to Feedback Collection System!</h1>
+<div class="getStartedDiv">
     <h1>
         Enter your data to get started with submitting feedback
     </h1>
     <form method="post" action="/get-started/submit">
         <input type="text" name="username" placeholder="Username" pattern="^[a-zA-Z]{1,20}$" required>
-        <br/>
         <input type="number" name="age" placeholder="Your age" min="12" max="120" required>
-        <br/>
         <input type="text" name="country" placeholder="Your country of residence" pattern="^[a-zA-Z]{1,20}$" required>
         <br/>
         <button type="submit">Get Started</button>
     </form>
 </div>
-<h1>OR</h1>
-<div>
+<h1 class="getStartedDiv">OR</h1>
+<div class="getStartedDiv">
     <h1>
         Enter admin password to see analytics
     </h1>
     <form method="post" action="/get-started/admin-check">
-        <input type="password" name="password" placeholder="password" required>
+        <input type="password" name="password" placeholder="Password" required>
         <br/>
         <p th:text="${passwordMessage}"/>
         <button type="submit">Log in as admin</button>

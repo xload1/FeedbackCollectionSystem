@@ -1,0 +1,109 @@
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Poppins';
+}
+.getStartedMainHeading {
+    font-size: 50px;
+    font-weight: 600;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.getStartedSubHeading {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+.getStartedDiv {
+    width: 50%;
+    display: flex;
+}
+input{
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+    margin: 5px;
+}
+button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: white;
+    color: black;
+}
+.red{
+    color: palevioletred;
+}
+.green{
+    color: palegreen;
+}
+nav {
+    position: sticky;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100px;
+}
+
+.default-nav {
+    --filter: blur(30px);
+    -webkit-backdrop-filter: var(--filter);
+    backdrop-filter: var(--filter);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+ul {
+    list-style-type: none ;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 20px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid white;
+}
+.stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stars span {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.stars span:hover,
+.stars span.active {
+    background-color: white;
+}

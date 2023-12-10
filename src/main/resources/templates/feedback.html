@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Feedback Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
 
-<nav>
+
+<nav class="default-nav">
     <ul>
         <li><a href="/feedback">Feedback submission</a></li>
         <li><a href="/list">Feedback list</a></li>
@@ -22,7 +30,15 @@
     <form method="post" action="/feedback/submit">
         <input type="text" name="text" placeholder="Your feedback text" pattern="^.{1,299}$" required>
         <br/>
-        <input type="number" name="rating" placeholder="Your rating of the service" min="1" max="5" required>
+        <input type="hidden" name="rating" id="ratingInput" />
+        <span>Rate the service from 1 to 5:</span>
+        <div class="stars" id="starRating">
+            <span data-rating="1" onclick="setRating(1)"></span>
+            <span data-rating="2" onclick="setRating(2)"></span>
+            <span data-rating="3" onclick="setRating(3)"></span>
+            <span data-rating="4" onclick="setRating(4)"></span>
+            <span data-rating="5" onclick="setRating(5)"></span>
+        </div>
         <br/>
         <input type="number" name="convenience" placeholder="Your rating of the service convenience" min="1" max="5" required>
         <br/>
@@ -54,5 +70,22 @@
     </form>
 </div>
 </div>
+<script>
+    let userRating = 0;
+
+    function setRating(rating) {
+        userRating = rating;
+        document.getElementById('ratingInput').value = userRating;
+        updateStars();
+    }
+
+    function updateStars() {
+        const stars = document.getElementById('starRating').querySelectorAll('span');
+
+        stars.forEach((star, index) => {
+            star.classList.toggle('active', index < userRating);
+        });
+    }
+</script>
 </body>
 </html>
