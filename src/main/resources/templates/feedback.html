@@ -12,9 +12,6 @@
     </style>
 </head>
 <body>
-
-
-
 <nav class="default-nav">
     <ul>
         <li><a href="/feedback">Feedback submission</a></li>
@@ -28,7 +25,7 @@
 <div th:if="${isUser}">
     <h1>You can now submit a feedback of the service</h1>
     <form method="post" action="/feedback/submit">
-        <input type="text" name="text" placeholder="Your feedback text" pattern="^.{1,299}$" required>
+        <input class="feedback-text" type="text" name="text" placeholder="Your feedback text" pattern="^.{1,299}$" required>
         <br/>
         <input type="hidden" name="rating" id="ratingInput" />
         <span>Rate the service from 1 to 5:</span>
@@ -40,7 +37,15 @@
             <span data-rating="5" onclick="setRating(5)"></span>
         </div>
         <br/>
-        <input type="number" name="convenience" placeholder="Your rating of the service convenience" min="1" max="5" required>
+        <input type="hidden" name="convenience" id="convenienceInput" />
+        <span>Rate the convenience from 1 to 5:</span>
+        <div class="stars" id="convenienceRating">
+            <span data-rating="1" onclick="setConvenience(1)"></span>
+            <span data-rating="2" onclick="setConvenience(2)"></span>
+            <span data-rating="3" onclick="setConvenience(3)"></span>
+            <span data-rating="4" onclick="setConvenience(4)"></span>
+            <span data-rating="5" onclick="setConvenience(5)"></span>
+        </div>
         <br/>
         <label>Are you satisfied with the service?
             <input type="checkbox" name="satisfied">
@@ -50,11 +55,11 @@
             <input type="checkbox" name="anonymous">
         </label>
         <br/>
-        <span>*Your feedback will not be shown for other users in feedback list, but admins will still see it for analytics</span>
+        <span class="subtitle">*Your feedback will not be shown for other users in feedback list, but admins will still see it for analytics</span>
         <br/>
         <button type="submit">Submit Feedback</button>
         <br/>
-        <span th:text="${feedbackMessage}"/>
+        <span th:class="${feedbackMessage.equals('Thank you for your feedback!') ? 'green' : 'red'}" th:text="${feedbackMessage}"/>
     </form>
 </div>
 <div th:unless="${isUser}">
@@ -71,8 +76,11 @@
 </div>
 </div>
 <script>
+    window.onload = function() {
+        document.getElementById('ratingInput').value = 0;
+        document.getElementById('convenienceInput').value = 0;
+    };
     let userRating = 0;
-
     function setRating(rating) {
         userRating = rating;
         document.getElementById('ratingInput').value = userRating;
@@ -84,6 +92,20 @@
 
         stars.forEach((star, index) => {
             star.classList.toggle('active', index < userRating);
+        });
+    }
+    let convenienceRating = 0;
+    function setConvenience(convenience) {
+        convenienceRating = convenience;
+        document.getElementById('convenienceInput').value = convenienceRating;
+        updateConvenience();
+    }
+
+    function updateConvenience() {
+        const convenience = document.getElementById('convenienceRating').querySelectorAll('span');
+
+        convenience.forEach((convenience, index) => {
+            convenience.classList.toggle('active', index < convenienceRating);
         });
     }
 </script>

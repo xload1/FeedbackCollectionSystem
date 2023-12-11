@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Feedback List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <style>
-        .red {
-            color: red;
+        body {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-<nav c>
+<nav class="default-nav">
     <ul>
         <li><a href="/feedback">Feedback submission</a></li>
         <li><a href="/list">Feedback list</a></li>
@@ -18,7 +20,7 @@
         <li th:unless="${isAdmin}"><a>Analytics (Only for Admins)</a></li>
     </ul>
 </nav>
-<p>Sort by:</p>
+<p style="text-align: left; margin-left: 20%">Sort by:</p>
 <table>
     <thead>
     <tr>

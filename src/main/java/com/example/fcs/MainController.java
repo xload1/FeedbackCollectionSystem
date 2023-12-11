@@ -98,11 +98,15 @@ public class MainController {
     }
 
     @PostMapping("/feedback/submit")
-    public String feedbackSubmit(@RequestParam String text, @RequestParam int rating,
-                                 @RequestParam int convenience, @RequestParam(required = false, defaultValue = "false") boolean satisfied,
+    public String feedbackSubmit(@RequestParam String text, @RequestParam(required = false) int rating,
+                                 @RequestParam(required = false) int convenience, @RequestParam(required = false, defaultValue = "false") boolean satisfied,
                                  @RequestParam(required = false, defaultValue = "false") boolean anonymous, HttpServletRequest request) {
         if (cookieSearch(request, "username").equals("")) {
             feedbackMessage = "You are not logged in";
+            return "redirect:/feedback";
+        }
+        if(convenience == 0 || rating == 0) {
+            feedbackMessage = "Please, specify rating and convenience";
             return "redirect:/feedback";
         }
         if(feedbackService.getUsersFeedbacks().stream().filter(userFeedback -> userFeedback.getUsername().equals(cookieSearch(request, "username"))).toList().size() > 0) {

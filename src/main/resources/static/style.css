@@ -1,7 +1,7 @@
 body {
     background-image: url('background.jpg');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     color: white;
     font-family: 'Poppins';
 }
@@ -61,7 +61,7 @@ nav {
 }
 
 .default-nav {
-    --filter: blur(30px);
+    --filter: blur(15px);
     -webkit-backdrop-filter: var(--filter);
     backdrop-filter: var(--filter);
     border-bottom: 2px solid rgba(255, 255, 255, 0.05);
@@ -107,3 +107,50 @@ a{
 .stars span.active {
     background-color: white;
 }
+.feedback-text{
+    width: 350px;
+    height: 55px;
+}
+.subtitle{
+    font-size:10px;
+    font-weight: 400;
+    color: lightgray;
+}
+table {
+    color: white;
+    text-align: left;
+    align-items: center;
+    width: 60%;
+    margin-left: 20%;
+    border-collapse: collapse;
+}
+th{
+    width: 100px;
+}
+td{
+    white-space: nowrap;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #dddddd;
+    padding: 8px;
+}
+.adiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+    padding: 15px;
+    border: 2px solid white;
+    margin: 160px 30px;
+}
+.avalue{
+    font-size: 30px;
+    font-weight: 600;
+}
+.ap{
+    margin: 3px;
+}
+

@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Analytics</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<nav>
+<nav class="default-nav">
     <ul>
         <li><a href="/feedback">Feedback submission</a></li>
         <li><a href="/list">Feedback list</a></li>
@@ -13,33 +20,33 @@
         <li th:unless="${isAdmin}"><a>Analytics (Only for Admins)</a></li>
     </ul>
 </nav>
-<div th:if="${isAdmin}">
-    <h1>Welcome to Analytics, Admin!</h1>
-    <div>
+<h1 th:if="${isAdmin}" style="font-size: 50px">Welcome to Analytics, Admin!</h1>
+<div th:if="${isAdmin}" style="display: inline-flex">
+    <div class="adiv">
         <p>Average rating of the service: </p>
-        <p th:text="${averageRating}"/>
+        <p th:text="${averageRating}" class="avalue"/>
     </div>
-    <div>
+    <div class="adiv">
         <p>Average convenience of the service: </p>
-        <p th:text="${averageConvenience}"/>
+        <p th:text="${averageConvenience}" class="avalue"/>
     </div>
-    <div>
+    <div class="adiv">
         <p>Top 3 Most popular countries: </p>
-        <p th:text="'1. '+${top3countries.get(0)}"/>
-        <p th:text="'2. '+${top3countries.get(1)}"/>
-        <p th:text="'3. '+${top3countries.get(2)}"/>
+        <p class="ap" th:text="'1. '+${top3countries.get(0)}"/>
+        <p class="ap" th:text="'2. '+${top3countries.get(1)}"/>
+        <p class="ap" th:text="'3. '+${top3countries.get(2)}"/>
     </div>
-    <div>
+    <div class="adiv">
         <p>Best calculated age: </p>
-        <p th:text="${bestAge}"/>
+        <p th:text="${bestAge}" class="avalue"/>
     </div>
-    <div>
+    <div class="adiv">
         <p>Satisfaction percentage: </p>
-        <p th:text="${satisfiedPercentage} + '%'"/>
+        <p th:text="${satisfiedPercentage} + '%'" class="avalue"/>
     </div>
-    <div>
+    <div class="adiv">
         <p>Most satisfied country: </p>
-        <p th:text="${mostSatisfiedCountry}"/>
+        <p th:text="${mostSatisfiedCountry}" class="avalue"/>
     </div>
 </div>
 <div th:unless="${isAdmin}">
