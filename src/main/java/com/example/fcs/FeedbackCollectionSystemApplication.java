@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FeedbackCollectionSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FeedbackCollectionSystemApplication.class, args);
+			SpringApplication.run(FeedbackCollectionSystemApplication.class, args);
 	}
 
 }
