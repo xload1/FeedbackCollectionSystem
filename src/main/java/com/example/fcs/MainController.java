@@ -138,6 +138,9 @@ public class MainController {
                 case "Age" -> {
                     feedbacks.sort(Comparator.comparing(UserFeedback::getAge));
                 }
+                case "Feedback" -> {
+                    feedbacks.sort(Comparator.comparingInt(e -> e.getFeedback().length()));
+                }
                 case "Country" -> {
                     feedbacks.sort(Comparator.comparing(UserFeedback::getCountry));
                 }
